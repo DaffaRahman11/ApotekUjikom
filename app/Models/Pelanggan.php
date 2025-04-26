@@ -18,6 +18,17 @@ class Pelanggan extends Model
 
     protected $guarded =['kdPelanggan'];
 
+    public function getRouteKeyName()
+    {
+        return 'kdPelanggan'; 
+    }
+
+    public function getKeyName()
+    {
+        return 'kdPelanggan'; // Pastikan key name yang digunakan adalah kdPelanggan
+    }
+
+
     public function pelangganPenjualan(): HasMany{
         return $this->hasMany(Penjualan::class);   
     }
