@@ -2,7 +2,7 @@
   <div
   class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24"
   >
-  <h6 class="fw-semibold mb-0">Tambah Supplier Baru</h6>
+  <h6 class="fw-semibold mb-0">Edit Data Supplier Yang Bernama {{ $suplier->namaSuplier }} </h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
       <a
@@ -17,7 +17,7 @@
       </a>
     </li>
     <li>-</li>
-    <li class="fw-medium">Tambah Suplier</li>
+    <li class="fw-medium">Edit Supplier</li>
   </ul>
 </div>
 
@@ -27,7 +27,8 @@
       <div class="col-xxl-6 col-xl-8 col-lg-10">
         <div class="card border">
           <div class="card-body">
-            <form action="/dashboard/suplier" method="POST" data-toggle="validator">
+            <form action="/dashboard/suplier/{{ $suplier->kdSuplier }}" method="POST" data-toggle="validator">
+              @method('put')
               @csrf
               <div class="mb-20">
                 <label
@@ -44,6 +45,7 @@
                   placeholder="Masukkan Nama Supplier"
                   autocomplete="off"
                   autofocus
+                  value="{{ old('namaSuplier',  $suplier->namaSuplier )}}"
                 />
                 @error('namaSuplier')
                   <div class="invalid-feedback">{{$message}}
@@ -54,7 +56,7 @@
                 <label
                   for="alamat"
                   class="form-label fw-semibold text-primary-light text-sm mb-8"
-                  >Alamat Suplier <span class="text-danger-600">*</span></label
+                  >Alamat Pelanggan <span class="text-danger-600">*</span></label
                 >
                 <input
                   type="text"
@@ -63,6 +65,7 @@
                   name="alamat"
                   placeholder="Masukkan Alamat Supplier"
                   autocomplete="off"
+                  value="{{ old('alamat',  $suplier->alamat )}}"
                 />
                 @error('alamat')
                   <div class="invalid-feedback">{{$message}}
@@ -82,6 +85,7 @@
                   name="kota"
                   placeholder="Masukkan Nama Kota"
                   autocomplete="off"
+                  value="{{ old('kota',  $suplier->kota )}}"
                 />
                 @error('kota')
                   <div class="invalid-feedback">{{$message}}
@@ -101,6 +105,7 @@
                   name="telpon"
                   placeholder="Masukkan Nomer Telepon"
                   autocomplete="off"
+                  value="{{ old('telpon',  $suplier->telpon )}}"
                 />
                 @error('telpon')
                   <div class="invalid-feedback">{{$message}}
@@ -120,7 +125,7 @@
                   type="submit"
                   class="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8"
                 >
-                  Simpan
+                  Simpan Perubahan
                 </button>
               </div>
             </form>
