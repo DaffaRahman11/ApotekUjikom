@@ -16,7 +16,9 @@ return new class extends Migration
             $table->timestamp('tanggalPenjualan')->useCurrent();
             $table->unsignedBigInteger('kdPelanggan'); 
             $table->foreign('kdPelanggan')->references('kdPelanggan')->on('pelanggans');
+            $table->integer('total');
             $table->integer('diskon');
+            $table->timestamps();
         });
     }
 

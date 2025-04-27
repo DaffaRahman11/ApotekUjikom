@@ -2,7 +2,7 @@
   <div
   class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24"
   >
-  <h6 class="fw-semibold mb-0">Tambah Data Obat Baru</h6>
+  <h6 class="fw-semibold mb-0">Edit Data Obat {{ $obat->namaObat }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
       <a
@@ -17,7 +17,7 @@
       </a>
     </li>
     <li>-</li>
-    <li class="fw-medium">Tambah Obat</li>
+    <li class="fw-medium">Edit Obat</li>
   </ul>
 </div>
 
@@ -27,7 +27,8 @@
       <div class="col-xxl-6 col-xl-8 col-lg-10">
         <div class="card border">
           <div class="card-body">
-            <form action="/dashboard/obat" method="POST" data-toggle="validator">
+            <form action="/dashboard/obat/{{ $obat->kdObat }}" method="POST" data-toggle="validator">
+              @method('put')
               @csrf
               <div class="mb-20">
                 <label
@@ -44,6 +45,7 @@
                   placeholder="Masukkan Nama Obat"
                   autocomplete="off"
                   autofocus
+                  value="{{ old('namaObat',  $obat->namaObat )}}"
                 />
                 @error('namaObat')
                   <div class="invalid-feedback">{{$message}}
@@ -63,6 +65,7 @@
                   name="jenis"
                   placeholder="Masukkan Jenis Obat"
                   autocomplete="off"
+                  value="{{ old('jenis',  $obat->jenis )}}"
                 />
                 @error('jenis')
                   <div class="invalid-feedback">{{$message}}
@@ -82,6 +85,7 @@
                   name="satuan"
                   placeholder="Masukkan Satuan Obat"
                   autocomplete="off"
+                  value="{{ old('satuan',  $obat->satuan )}}"
                 />
                 @error('satuan')
                   <div class="invalid-feedback">{{$message}}
@@ -101,6 +105,7 @@
                   name="hargaBeli"
                   placeholder="Masukkan Harga Beli"
                   autocomplete="off"
+                  value="{{ old('hargaBeli',  $obat->hargaBeli )}}"
                 />
                 @error('hargaBeli')
                   <div class="invalid-feedback">{{$message}}
@@ -120,6 +125,7 @@
                   name="hargaJual"
                   placeholder="Masukkan Harga Jual"
                   autocomplete="off"
+                  value="{{ old('hargaJual',  $obat->hargaJual )}}"
                 />
                 @error('hargaJual')
                   <div class="invalid-feedback">{{$message}}
@@ -139,6 +145,7 @@
                   name="stok"
                   placeholder="Masukkan Stok Obat"
                   autocomplete="off"
+                  value="{{ old('stok',  $obat->stok )}}"
                 />
                 @error('stok')
                   <div class="invalid-feedback">{{$message}}
@@ -154,7 +161,7 @@
                 <select  class="selectpicker form-control" data-style="py-0" id="kdSuplier" name="kdSuplier">
                   <option value="" selected disabled>Pilih Supplier</option>
                   @foreach ( $supliers as $suplier )
-                  <option value="{{ $suplier->kdSuplier }}" >{{ $suplier->namaSuplier}}</option>
+                  <option value="{{ $suplier->kdSuplier }}" {{ old('kdSuplier', $obat->kdSuplier) == $suplier->kdSuplier ? 'selected' : '' }}>{{ $suplier->namaSuplier }}</option> 
                   @endforeach
                 </select>
                 @error('stok')

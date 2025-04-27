@@ -16,7 +16,9 @@ return new class extends Migration
             $table->timestamp('tanggalPembelian')->useCurrent();
             $table->unsignedBigInteger('kdSuplier'); 
             $table->foreign('kdSuplier')->references('kdSuplier')->on('supliers');
+            $table->integer('total');
             $table->integer('diskon');
+            $table->timestamps();
         });
     }
 

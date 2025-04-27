@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('supliers', function (Blueprint $table) {
             $table->bigIncrements('kdSuplier')->primary();
             $table->string('namaSuplier');
-            $table->string('alamat');
-            $table->string('kota');
-            $table->string('telpon');
+            $table->string('alamat')->nullable();
+            $table->string('kota')->nullable();
+            $table->string('telpon')->nullable();
             $table->timestamps();
         });
     }
